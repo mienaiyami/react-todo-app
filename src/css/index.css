@@ -1,0 +1,404 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.darkTheme {
+  --color-one: hsl(235, 21%, 11%);
+  --color-two: hsl(235, 24%, 19%);
+  --color-three: hsl(234, 39%, 85%);
+  --color-three-hover: hsl(236, 33%, 92%);
+  --color-four: hsl(234, 11%, 52%);
+  --color-five: hsl(233, 14%, 35%);
+  --color-five-hover: hsl(237, 14%, 26%);
+  --theme-switch-icon: url("../images/icon-sun.svg");
+  --app-bg-img: url("../images/bg-desktop-dark.jpg");
+}
+
+.lightTheme {
+  --color-two: hsl(0, 0%, 98%);
+  --color-one: hsl(236, 33%, 92%);
+  --color-three: hsl(235, 19%, 35%);
+  --color-three-hover: hsl(233, 11%, 84%);
+  --color-four: hsl(236, 9%, 61%);
+  --color-five: hsl(233, 11%, 84%);
+  --color-five-hover: hsl(235, 19%, 35%);
+  --theme-switch-icon: url("../images/icon-moon.svg");
+  --app-bg-img: url("../images/bg-desktop-light.jpg");
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 400;
+  overflow: hidden;
+  color: #fff;
+  --color-grad: linear-gradient(
+        135deg,
+        hsl(192, 100%, 67%),
+        hsl(280, 87%, 65%)
+    );
+  --shadow: 0 2px 50px 1px rgba(0, 0, 0, 0.3);
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  background: var(--color-one) var(--app-bg-img) no-repeat;
+  background-size: 100% 40%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  font-size: 15px;
+  --listItem-height: 70px;
+}
+
+#root .app {
+  width: 50%;
+  max-width: 650px;
+  min-width: 550px;
+  position: relative;
+  top: 2.66em;
+}
+
+#root .app .topBar {
+  margin: 35px 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#root .app .topBar .appName {
+  font-size: 2.66em;
+  letter-spacing: 0.5em;
+}
+
+#root .app .topBar .themeBtn {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  margin-left: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 100%;
+}
+
+#root .app .topBar .themeBtn:hover {
+  background: #ffffff10;
+}
+
+#root .app .topBar .themeBtn::before {
+  content: "";
+  background: var(--theme-switch-icon) no-repeat center;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#root .app .listItem {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 13% 77% 10%;
+      grid-template-columns: 13% 77% 10%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 5px;
+  background: var(--color-two);
+  position: relative;
+  width: 100%;
+  height: var(--listItem-height);
+  font-size: 1.2em;
+  color: var(--color-three);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#root .app .listItem input[type="checkbox"] {
+  display: none;
+}
+
+#root .app .listItem input[type="checkbox"]:checked ~ .listItemText {
+  text-decoration: line-through;
+  color: var(--color-five);
+}
+
+#root .app .listItem input[type="checkbox"]:checked ~ label {
+  --normal-state-color: var(--color-grad);
+}
+
+#root .app .listItem input[type="checkbox"]:checked ~ label::after {
+  background: url("../images/icon-check.svg") center no-repeat;
+}
+
+#root .app .listItem .listItemText {
+  cursor: pointer;
+  padding: 10px 0;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+}
+
+#root .app .listItem .listItemText:focus {
+  cursor: text;
+  outline: none;
+}
+
+#root .app .listItem:hover label {
+  --normal-state-color: var(--color-grad);
+}
+
+#root .app .listItem label {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  --normal-state-color: var(--color-five);
+  cursor: pointer;
+}
+
+#root .app .listItem label::before {
+  content: "";
+  background: var(--normal-state-color);
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border-radius: 100%;
+  width: 1.6em;
+  height: 1.6em;
+}
+
+#root .app .listItem label::after {
+  content: "";
+  background: var(--color-two);
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  border-radius: 100%;
+  width: 1.5em;
+  height: 1.5em;
+}
+
+#root .app .listItem:hover button {
+  opacity: 1;
+}
+
+#root .app .listItem button {
+  width: 2em;
+  height: 2em;
+  margin: 1.3em 1.3em;
+  opacity: 0;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+#root .app .listItem button::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: url("../images/icon-cross.svg") center no-repeat;
+}
+
+#root .app .newTODO {
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  -webkit-box-shadow: var(--shadow);
+          box-shadow: var(--shadow);
+}
+
+#root .app .newTODO .listItem label {
+  --normal-state-color: var(--color-five);
+  cursor: default;
+}
+
+#root .app .newTODO .listItem .listItemText input {
+  background: none;
+  border: none;
+  height: 100%;
+  width: 100%;
+  font-size: 1.1em;
+  color: var(--color-three);
+}
+
+#root .app .newTODO .listItem .listItemText input:focus {
+  outline: none;
+}
+
+#root .app .TODOList {
+  border-radius: 5px;
+  background: var(--color-two);
+  -webkit-box-shadow: var(--shadow);
+          box-shadow: var(--shadow);
+}
+
+#root .app .TODOList ul {
+  height: 50vh;
+  overflow-y: auto;
+}
+
+#root .app .TODOList ul::-webkit-scrollbar {
+  width: 10px;
+}
+
+#root .app .TODOList ul::-webkit-scrollbar-track {
+  background: #ffffff10;
+}
+
+#root .app .TODOList ul::-webkit-scrollbar-thumb {
+  background: var(--color-five);
+}
+
+#root .app .TODOList ul li {
+  list-style-type: none;
+  border-bottom: 1px solid var(--color-five);
+}
+
+#root .app .TODOList .listInfo {
+  position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  width: 100%;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px 20px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#root .app .TODOList .listInfo span {
+  color: var(--color-five);
+  font-size: 0.95em;
+}
+
+#root .app .TODOList .listInfo button {
+  color: var(--color-five);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 8px;
+  font-size: 0.94em;
+  font-weight: bold;
+  -webkit-transition: 0.2 color;
+  transition: 0.2 color;
+}
+
+#root .app .TODOList .listInfo button:hover {
+  color: var(--color-three);
+}
+
+#root .app .TODOList .listInfo .activeBtn {
+  color: #4978df;
+}
+
+#root .app .TODOList .listInfo .filterItems {
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 700px) {
+  .darkTheme {
+    --app-bg-img: url("../images/bg-mobile-dark.jpg");
+  }
+  .lightTheme {
+    --app-bg-img: url("../images/bg-mobile-light.jpg");
+  }
+  #root {
+    font-size: 10px;
+    --listItem-height: 50px;
+  }
+  #root .app {
+    width: 90%;
+    min-width: 300px;
+  }
+  #root .app .listItem button {
+    opacity: 1;
+  }
+  #root .app .TODOList .listInfo span {
+    font-size: 1.3em;
+  }
+  #root .app .TODOList .listInfo button {
+    font-size: 1.3em;
+    margin-left: auto;
+  }
+  #root .app .TODOList .listInfo .filterItems {
+    border-radius: 5px;
+    -webkit-box-shadow: var(--shadow);
+            box-shadow: var(--shadow);
+    margin: 0;
+    position: absolute;
+    background: var(--color-two);
+    height: var(--listItem-height);
+    left: 0;
+    top: calc(100% + 20px);
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  #root .app .TODOList .listInfo .filterItems button {
+    margin: 0 0px;
+  }
+}
+/*# sourceMappingURL=index.css.map */
